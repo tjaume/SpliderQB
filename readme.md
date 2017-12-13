@@ -1,4 +1,4 @@
-首先从 Github 上面克隆整个项目。
+项目运行依赖 `node v7.6.0 ` 以上， 首先从 Github 上面克隆整个项目。
 
 ```
 git clone https://github.com/StartAction/SpliderQB.git
