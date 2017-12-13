@@ -1,0 +1,83 @@
+body, div,h1, h2, h3, h4, h5, p, span{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    margin: 20px auto;
+    background: rgb(247, 247, 247);
+    width: 50%;
+}
+h1{
+    text-align: center;
+}
+
+#container div{
+    background-color: white;
+    border-radius: 8px;
+    padding: 21px 15px;
+    margin-top:20px;
+    margin-bottom: 20px;
+}
+
+#container div:hover{
+    background-color: #eeeeee;
+    
+}
+.nikeName{
+    font-size: 16px;
+    color: #c4836a;
+}
+
+#container p{
+    margin-top: 9px;
+    margin-bottom: 11px;
+    line-height: 1.5em;
+}
+
+.likeNumber{
+    font-size: 14px;
+    color:#a6a0b6;
+}
+
+#container .footer{
+    background-color: #eeeeee;
+    text-align: center;
+}
+
+.footer span{
+    font-size: 13px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.footer button{
+    background-color: #eeee;
+    border: none;
+    border-radius: 7px;
+    color: gray;
+    padding: 11px 29px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+}
+
+.footer button:hover{
+    background-color: #008CBA;
+    color: white;
+    cursor: pointer;
+}
+
+.ctl{
+    position: fixed;
+    bottom: 20%;
+    /* right:20%; */
+    right:20%
+}
+.ctl img{
+    display: block;
+}
+.ctl img:hover{
+    cursor: pointer;
+}

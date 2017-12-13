@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>qsbk</title>
+    <script type="text/javascript" src="./vue.js"></script>
+    <script type="text/javascript" src="./jquery-1.7.1.min.js"></script>
+    <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    <h1>糗事百科爬取</h1>
+    <div id="container">
+        <template v-for="joke in jokeList">
+            <div>
+                <span v-bind:class="nikeName">昵称：{{ joke.title }}</span> <br>
+                <p>{{ joke.content }}</p>
+                <span v-bind:class="likeNumber">点赞次数:<i> {{ joke.likeNumber }} </i></span>
+            </div>
+        </template>
+        <div v-bind:class="footer">
+            <button v-on:click="pre">上一页</button>
+            <span>当前页：{{ index }}</span>
+            <button v-on:click="next">下一页</button>
+        </div>
+    </div>
+    <div class="ctl">
+        <img src="./top1.png" id="top">
+        <img src="./bottom1.png" id = "bottom"/>
+    </div>
+   
+    <script>
+        $(document).ready(function(){
+            $('#top').mouseover(function(){
+            $('#top').attr('src', './top.png')
+            });
+            $('#bottom').mouseover(function(){
+                $('#bottom').attr('src', './bottom.png')
+            });
+            $('#top').mouseleave(function(){
+                $('#top').attr('src', './top1.png')
+            });
+            $('#bottom').mouseleave(function(){
+                $('#bottom').attr('src', './bottom1.png')
+            });
+            $('#top').click(function(){
+                $('body').animate( {scrollTop: 0}, 500);
+            });
+            $('#bottom').click(function(){
+                var h = $(document).height()-$(window).height();
+                $('body').animate( {scrollTop: h}, 500);
+            });
+        });
+        
+        var vue = new Vue({
+            el: '#container',
+            data: {
+                jokeList : [],
+                index: 1,
+                nikeName: 'nikeName',
+                likeNumber: 'likeNumber',
+                footer: 'footer'
+            },
+            methods: {
+                ajax: function(index){
+                    var that = this;
+                    $.post('./getJokeList', {"index": index}, function(data){
+                         that.init(data);
+                    });
+                },
+                init: function(data){
+                    this.jokeList = data;
+                },
+                pre: function(event){
+                    this.index--;
+                    if(this.index < 1) this.index = 1;
+                    this.ajax(this.index);
+                    $('body').animate( {scrollTop: 0}, 500);
+                },
+                next: function(event){
+                    this.index++;
+                    if(this.index > 13) this.index = 13;
+                    this.ajax(this.index);
+                    $('body').animate( {scrollTop: 0}, 500);
+                }
+            },
+            mounted: function(){
+                this.ajax(this.index);
+            }
+        });
+    </script>
+</body>
+</html>
